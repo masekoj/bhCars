@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Gauge, Fuel, Settings } from "lucide-react";
+import WhatsAppButton from "./WhatsAppButton";
 import car1 from "@/assets/featured-car-1.jpg";
 import car2 from "@/assets/featured-car-2.jpg";
 import car3 from "@/assets/featured-car-3.jpg";
@@ -106,13 +107,12 @@ const FeaturedVehicles = () => {
                   </div>
                 </div>
 
-                <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                  onClick={scrollToContact}
+                <WhatsAppButton 
+                  vehicleName={`${vehicle.year} ${vehicle.name}`}
+                  className="w-full"
                 >
-                  Inquire Now
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
+                  Inquire via WhatsApp
+                </WhatsAppButton>
               </CardContent>
             </Card>
           ))}
