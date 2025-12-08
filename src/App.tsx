@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-const bhcars-5fa1fcbb = import.meta.env.https://github.com/masekoj/bhcars-5fa1fcbb.git;
+const bhCars = import.meta.env.https://github.com/masekoj/bhCars.git;
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
