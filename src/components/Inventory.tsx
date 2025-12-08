@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Carousel,
   CarouselContent,
@@ -16,9 +17,11 @@ import {
   Calendar, 
   Car as CarIcon,
   Filter,
-  ChevronDown
+  ChevronDown,
+  GitCompare
 } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
+import VehicleComparison from "./VehicleComparison";
 import car1 from "@/assets/featured-car-1.jpg";
 import car2 from "@/assets/featured-car-2.jpg";
 import car3 from "@/assets/featured-car-3.jpg";
@@ -125,6 +128,7 @@ const Inventory = () => {
   const [selectedTransmission, setSelectedTransmission] = useState("All");
   const [selectedFuel, setSelectedFuel] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
+  const [compareList, setCompareList] = useState<number[]>([]);
 
   const filteredInventory = inventoryData.filter((car) => {
     const makeMatch = selectedMake === "All" || car.make === selectedMake;
@@ -132,6 +136,26 @@ const Inventory = () => {
     const fuelMatch = selectedFuel === "All" || car.fuel === selectedFuel;
     return makeMatch && transmissionMatch && fuelMatch;
   });
+
+  const comparedVehicles = inventoryData.filter((car) => compareList.includes(car.id));
+
+  const toggleCompare = (id: number) => {
+    setCompareList((prev) =>
+      prev.includes(id)
+        ? prev.filter((carId) => carId !== id)
+        : prev.length < 4
+        ? [...prev, id]
+        : prev
+    );
+  };
+
+  const removeFromCompare = (id: number) => {
+    setCompareList((prev) => prev.filter((carId) => carId !== id));
+  };
+
+  const clearCompare = () => {
+    setCompareList([]);
+  };
 
   return (
     <section id="inventory" className="py-24 bg-secondary/30">
@@ -144,16 +168,33 @@ const Inventory = () => {
             Swipe through our selection of premium vehicles available for import from Dar es Salaam to Malawi.
           </p>
 
-          {/* Filter Toggle */}
-          <Button
-            variant="outline"
-            onClick={() => setShowFilters(!showFilters)}
-            className="mb-6 border-border"
-          >
-            <Filter className="mr-2 h-4 w-4" />
-            Filter Vehicles
-            <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${showFilters ? "rotate-180" : ""}`} />
-          </Button>
+          {/* Filter Toggle & Compare Button */}
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <Button
+              variant="outline"
+              onClick={() => setShowFilters(!showFilters)}
+              className="border-border"
+            >
+              <Filter className="mr-2 h-4 w-4" />
+              Filter Vehicles
+              <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${showFilters ? "rotate-180" : ""}`} />
+            </Button>
+            
+            {compareList.length > 0 && (
+              <Button
+                variant="default"
+                onClick={() => document.getElementById('comparison-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-primary"
+              >
+                <GitCompare className="mr-2 h-4 w-4" />
+                Compare ({compareList.length})
+              </Button>
+            )}
+          </div>
+          
+          <p className="text-sm text-muted-foreground mb-4">
+            Select up to 4 vehicles to compare specifications side by side
+          </p>
 
           {/* Filters */}
           {showFilters && (
@@ -224,7 +265,11 @@ const Inventory = () => {
             <CarouselContent className="-ml-4">
               {filteredInventory.map((car) => (
                 <CarouselItem key={car.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 overflow-hidden h-full">
+                  <Card className={`bg-card border-2 transition-all duration-300 overflow-hidden h-full ${
+                    compareList.includes(car.id) 
+                      ? "border-primary ring-2 ring-primary/20" 
+                      : "border-border hover:border-primary/50"
+                  }`}>
                     <div className="relative overflow-hidden">
                       <img
                         src={car.image}
@@ -243,6 +288,27 @@ const Inventory = () => {
                       <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
                         {car.location}
                       </Badge>
+                      
+                      {/* Compare Checkbox */}
+                      <div className="absolute bottom-4 right-4">
+                        <label 
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all ${
+                            compareList.includes(car.id)
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-background/90 text-foreground hover:bg-background"
+                          }`}
+                        >
+                          <Checkbox
+                            checked={compareList.includes(car.id)}
+                            onCheckedChange={() => toggleCompare(car.id)}
+                            disabled={!compareList.includes(car.id) && compareList.length >= 4}
+                            className="border-current data-[state=checked]:bg-transparent data-[state=checked]:text-current"
+                          />
+                          <span className="text-xs font-medium">
+                            {compareList.includes(car.id) ? "Added" : "Compare"}
+                          </span>
+                        </label>
+                      </div>
                     </div>
                     <CardContent className="p-6">
                       <div className="mb-4">
@@ -295,6 +361,17 @@ const Inventory = () => {
         {filteredInventory.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground text-lg">No vehicles match your filters. Try adjusting your criteria.</p>
+          </div>
+        )}
+
+        {/* Comparison Section */}
+        {comparedVehicles.length > 0 && (
+          <div id="comparison-section" className="mt-12 scroll-mt-24">
+            <VehicleComparison
+              vehicles={comparedVehicles}
+              onRemove={removeFromCompare}
+              onClear={clearCompare}
+            />
           </div>
         )}
 
