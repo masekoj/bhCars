@@ -20,9 +20,9 @@ const WhatsAppButton = ({
   
   const getMessage = () => {
     if (vehicleName) {
-      return `Hello BH Car Imports! I'm interested in the ${vehicleName}. Could you please provide more details about availability, pricing, and import timeline from Dar es Salaam to Malawi?`;
+      return `Hello BH Car Imports! I'm interested in the ${vehicleName}. Could you please provide more details about availability, pricing, and import timeline from Japan to Malawi?`;
     }
-    return "Hello BH Car Imports! I'm interested in importing a vehicle from Dar es Salaam to Malawi. Could you please help me with available options?";
+    return "Hello BH Car Imports! I'm interested in importing a vehicle from Japan to Malawi. Could you please help me with available options?";
   };
 
   const handleWhatsAppClick = () => {
