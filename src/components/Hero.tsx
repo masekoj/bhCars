@@ -36,7 +36,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-            BH Car Imports specializes in bringing you premium vehicles from Japan to Malawi. 
+            BH Car Imports specializes in bringing you premium vehicles from Dar es Salaam to Malawi. 
             Quality, reliability, and exceptional service guaranteed.
           </p>
 
@@ -46,7 +46,7 @@ const Hero = () => {
               className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 animate-glow"
               onClick={() => scrollToSection("vehicles")}
             >
-              See Vehicles
+              Browse Vehicles
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
             <Button

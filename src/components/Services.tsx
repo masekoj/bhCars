@@ -5,7 +5,7 @@ const services = [
   {
     icon: Ship,
     title: "Import Services",
-    description: "Complete vehicle import solutions from Japan to Malawi with full documentation support.",
+    description: "Complete vehicle import solutions from Dar es Salaam to Malawi with full documentation support.",
   },
   {
     icon: Shield,

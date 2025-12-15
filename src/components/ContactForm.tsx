@@ -95,7 +95,7 @@ const ContactForm = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Location</h4>
                     <p className="text-muted-foreground">
-                      Importing from Japan to Malawi
+                      Importing from Dar es Salaam to Malawi
                     </p>
                   </div>
                 </div>

@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import {
   Carousel,
   CarouselContent,
@@ -19,188 +18,123 @@ import {
   Car as CarIcon,
   Filter,
   ChevronDown,
-  GitCompare,
-  Search,
-  X
+  GitCompare
 } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import VehicleComparison from "./VehicleComparison";
-import VehicleGallery from "./VehicleGallery";
 import car1 from "@/assets/featured-car-1.jpg";
 import car2 from "@/assets/featured-car-2.jpg";
 import car3 from "@/assets/featured-car-3.jpg";
-import toyoace1 from "@/assets/toyoace-1.jpg";
-import toyoace2 from "@/assets/toyoace-2.jpg";
-import toyoace3 from "@/assets/toyoace-3.jpg";
-import toyoace4 from "@/assets/toyoace-4.jpg";
-import mazdaCx51 from "@/assets/mazda-cx5-1.jpg";
-import mazdaCx52 from "@/assets/mazda-cx5-2.jpg";
-import mazdaCx53 from "@/assets/mazda-cx5-3.jpg";
-import mazdaCx54 from "@/assets/mazda-cx5-4.jpg";
 
 const inventoryData = [
   {
     id: 1,
     make: "Toyota",
-    model: "Toyoace 2 Ton",
-    year: 2018,
+    model: "Land Cruiser Prado",
+    year: 2022,
     price: "Contact for Price",
-    images: [toyoace1, toyoace2, toyoace3, toyoace4],
-    mileage: "85,000 km",
+    image: car1,
+    mileage: "15,000 km",
     fuel: "Diesel",
-    transmission: "Manual",
-    engine: "4.0L Diesel",
-    color: "Yellow",
+    transmission: "Automatic",
+    engine: "2.8L Turbo",
+    color: "Pearl White",
     status: "Available",
-    location: "Japan",
-    category: "Lorry",
+    location: "Dar es Salaam",
   },
   {
     id: 2,
-    make: "Mazda",
-    model: "CX-5",
-    year: 2019,
+    make: "Mercedes-Benz",
+    model: "GLE 350",
+    year: 2023,
     price: "Contact for Price",
-    images: [mazdaCx51, mazdaCx52, mazdaCx53, mazdaCx54],
-    mileage: "42,000 km",
+    image: car2,
+    mileage: "8,500 km",
     fuel: "Petrol",
     transmission: "Automatic",
-    engine: "2.2L SkyActiv",
-    color: "Deep Crystal Blue",
+    engine: "3.0L V6",
+    color: "Obsidian Black",
     status: "Available",
-    location: "Japan",
-    category: "SUV",
+    location: "Dar es Salaam",
   },
   {
     id: 3,
-    make: "Toyota",
-    model: "Dyna 2 Ton",
-    year: 2020,
+    make: "BMW",
+    model: "X5 xDrive40i",
+    year: 2021,
     price: "Contact for Price",
-    images: [car1],
-    mileage: "62,000 km",
-    fuel: "Diesel",
-    transmission: "Manual",
-    engine: "3.0L Diesel",
-    color: "White",
+    image: car3,
+    mileage: "22,000 km",
+    fuel: "Petrol",
+    transmission: "Automatic",
+    engine: "3.0L Twin-Turbo",
+    color: "Carbon Black",
     status: "Available",
-    location: "Japan",
-    category: "Lorry",
+    location: "Dar es Salaam",
   },
   {
     id: 4,
-    make: "Isuzu",
-    model: "Elf 2 Ton",
-    year: 2019,
+    make: "Toyota",
+    model: "Hilux Double Cab",
+    year: 2023,
     price: "Contact for Price",
-    images: [car2],
-    mileage: "78,000 km",
+    image: car1,
+    mileage: "5,200 km",
     fuel: "Diesel",
-    transmission: "Manual",
-    engine: "3.0L Diesel",
-    color: "White",
+    transmission: "Automatic",
+    engine: "2.8L GD-6",
+    color: "Attitude Black",
     status: "In Transit",
     location: "En Route",
-    category: "Lorry",
   },
   {
     id: 5,
-    make: "Mitsubishi",
-    model: "Canter 2 Ton",
-    year: 2021,
+    make: "Nissan",
+    model: "Patrol Y62",
+    year: 2022,
     price: "Contact for Price",
-    images: [car3],
-    mileage: "45,000 km",
-    fuel: "Diesel",
-    transmission: "Manual",
-    engine: "3.0L Diesel",
-    color: "White",
+    image: car2,
+    mileage: "18,000 km",
+    fuel: "Petrol",
+    transmission: "Automatic",
+    engine: "5.6L V8",
+    color: "Moonlight White",
     status: "Available",
-    location: "Japan",
-    category: "Lorry",
+    location: "Dar es Salaam",
   },
   {
     id: 6,
-    make: "Hino",
-    model: "Dutro 2 Ton",
-    year: 2018,
+    make: "Range Rover",
+    model: "Sport HSE",
+    year: 2021,
     price: "Contact for Price",
-    images: [car1],
-    mileage: "95,000 km",
-    fuel: "Diesel",
-    transmission: "Manual",
-    engine: "4.0L Diesel",
-    color: "Blue",
-    status: "Available",
-    location: "Japan",
-    category: "Lorry",
-  },
-  {
-    id: 7,
-    make: "Toyota",
-    model: "Hiace Van",
-    year: 2020,
-    price: "Contact for Price",
-    images: [car2],
-    mileage: "52,000 km",
+    image: car3,
+    mileage: "28,000 km",
     fuel: "Diesel",
     transmission: "Automatic",
-    engine: "2.8L Diesel",
-    color: "White",
+    engine: "3.0L TDV6",
+    color: "Santorini Black",
     status: "Available",
-    location: "Japan",
-    category: "Van",
-  },
-  {
-    id: 8,
-    make: "Nissan",
-    model: "Atlas 2 Ton",
-    year: 2019,
-    price: "Contact for Price",
-    images: [car3],
-    mileage: "68,000 km",
-    fuel: "Diesel",
-    transmission: "Manual",
-    engine: "3.0L Diesel",
-    color: "White",
-    status: "Available",
-    location: "Japan",
-    category: "Lorry",
+    location: "Dar es Salaam",
   },
 ];
 
-const makes = ["All", "Toyota", "Mazda", "Isuzu", "Mitsubishi", "Hino", "Nissan"];
+const makes = ["All", "Toyota", "Mercedes-Benz", "BMW", "Nissan", "Range Rover"];
 const transmissions = ["All", "Automatic", "Manual"];
-const fuelTypes = ["All", "Petrol", "Diesel"];
-const categories = ["All", "Lorry", "SUV", "Van"];
-
-const topSearches = [
-  "2 Ton Lorry",
-  "Toyota Toyoace",
-  "Mazda CX-5",
-  "Isuzu Elf",
-  "Canter",
-  "Hiace Van",
-];
+const fuelTypes = ["All", "Petrol", "Diesel", "Hybrid"];
 
 const Inventory = () => {
   const [selectedMake, setSelectedMake] = useState("All");
   const [selectedTransmission, setSelectedTransmission] = useState("All");
   const [selectedFuel, setSelectedFuel] = useState("All");
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
   const [compareList, setCompareList] = useState<number[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showSearchHints, setShowSearchHints] = useState(false);
 
   const filteredInventory = inventoryData.filter((car) => {
     const makeMatch = selectedMake === "All" || car.make === selectedMake;
     const transmissionMatch = selectedTransmission === "All" || car.transmission === selectedTransmission;
     const fuelMatch = selectedFuel === "All" || car.fuel === selectedFuel;
-    const categoryMatch = selectedCategory === "All" || car.category === selectedCategory;
-    const searchMatch = searchQuery === "" || 
-      `${car.make} ${car.model} ${car.category}`.toLowerCase().includes(searchQuery.toLowerCase());
-    return makeMatch && transmissionMatch && fuelMatch && categoryMatch && searchMatch;
+    return makeMatch && transmissionMatch && fuelMatch;
   });
 
   const comparedVehicles = inventoryData.filter((car) => compareList.includes(car.id));
@@ -223,11 +157,6 @@ const Inventory = () => {
     setCompareList([]);
   };
 
-  const handleSearchHintClick = (hint: string) => {
-    setSearchQuery(hint);
-    setShowSearchHints(false);
-  };
-
   return (
     <section id="inventory" className="py-24 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -236,52 +165,8 @@ const Inventory = () => {
             Browse Our Inventory
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Swipe through our selection of premium vehicles available for import from Japan to Malawi.
+            Swipe through our selection of premium vehicles available for import from Dar es Salaam to Malawi.
           </p>
-
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-6 relative">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search vehicles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setShowSearchHints(true)}
-                onBlur={() => setTimeout(() => setShowSearchHints(false), 200)}
-                className="pl-10 pr-10 bg-background border-border"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-            
-            {/* Search Hints Dropdown */}
-            {showSearchHints && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-20 animate-fade-in">
-                <div className="p-3">
-                  <p className="text-xs text-muted-foreground mb-2 text-left">Top Searches</p>
-                  <div className="flex flex-wrap gap-2">
-                    {topSearches.map((hint) => (
-                      <button
-                        key={hint}
-                        onClick={() => handleSearchHintClick(hint)}
-                        className="px-3 py-1.5 text-sm bg-secondary hover:bg-primary hover:text-primary-foreground rounded-full transition-colors text-foreground"
-                      >
-                        {hint}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
 
           {/* Filter Toggle & Compare Button */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -314,23 +199,6 @@ const Inventory = () => {
           {/* Filters */}
           {showFilters && (
             <div className="flex flex-wrap justify-center gap-4 mb-8 animate-fade-in">
-              <div className="flex flex-col items-start">
-                <span className="text-sm text-muted-foreground mb-2">Category</span>
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((cat) => (
-                    <Button
-                      key={cat}
-                      variant={selectedCategory === cat ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedCategory(cat)}
-                      className={selectedCategory === cat ? "bg-primary" : "border-border"}
-                    >
-                      {cat}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
               <div className="flex flex-col items-start">
                 <span className="text-sm text-muted-foreground mb-2">Make</span>
                 <div className="flex flex-wrap gap-2">
@@ -403,9 +271,10 @@ const Inventory = () => {
                       : "border-border hover:border-primary/50"
                   }`}>
                     <div className="relative overflow-hidden">
-                      <VehicleGallery 
-                        images={car.images} 
-                        vehicleName={`${car.make} ${car.model}`} 
+                      <img
+                        src={car.image}
+                        alt={`${car.make} ${car.model}`}
+                        className="w-full h-56 object-cover hover:scale-110 transition-transform duration-500"
                       />
                       <Badge 
                         className={`absolute top-4 right-4 ${
@@ -421,7 +290,7 @@ const Inventory = () => {
                       </Badge>
                       
                       {/* Compare Checkbox */}
-                      <div className="absolute bottom-14 right-2 z-10">
+                      <div className="absolute bottom-4 right-4">
                         <label 
                           className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all ${
                             compareList.includes(car.id)
@@ -445,7 +314,7 @@ const Inventory = () => {
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-1">
                           <CarIcon className="h-4 w-4 text-primary" />
-                          <span className="text-sm text-muted-foreground">{car.make} • {car.category}</span>
+                          <span className="text-sm text-muted-foreground">{car.make}</span>
                         </div>
                         <h3 className="text-xl font-bold text-foreground">{car.model}</h3>
                         <p className="text-primary font-semibold">{car.price}</p>

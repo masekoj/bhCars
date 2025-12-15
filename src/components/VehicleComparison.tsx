@@ -9,7 +9,7 @@ interface Vehicle {
   model: string;
   year: number;
   price: string;
-  images: string[];
+  image: string;
   mileage: string;
   fuel: string;
   transmission: string;
@@ -17,7 +17,6 @@ interface Vehicle {
   color: string;
   status: string;
   location: string;
-  category?: string;
 }
 
 interface VehicleComparisonProps {
@@ -68,7 +67,7 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
                       </button>
                       <div className="relative overflow-hidden rounded-lg mb-3">
                         <img
-                          src={vehicle.images[0]}
+                          src={vehicle.image}
                           alt={`${vehicle.make} ${vehicle.model}`}
                           className="w-full h-32 object-cover"
                         />
