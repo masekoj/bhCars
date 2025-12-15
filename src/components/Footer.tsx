@@ -17,7 +17,7 @@ const Footer = () => {
           <div>
             <img src={bhLogo} alt="BH Car Imports" className="h-16 w-auto mb-4" />
             <p className="text-muted-foreground mb-4">
-              Your trusted partner for premium vehicle imports from Dar es Salaam to Malawi.
+              Your trusted partner for premium vehicle imports from Japan to Malawi.
             </p>
             <div className="flex space-x-4">
               <a
@@ -107,7 +107,7 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  Dar es Salaam to Malawi
+                  Japan to Malawi
                 </span>
               </li>
             </ul>
