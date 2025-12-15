@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import {
   Carousel,
   CarouselContent,
@@ -18,22 +19,65 @@ import {
   Car as CarIcon,
   Filter,
   ChevronDown,
-  GitCompare
+  GitCompare,
+  Search,
+  X
 } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import VehicleComparison from "./VehicleComparison";
+import ImageGallery from "./ImageGallery";
 import car1 from "@/assets/featured-car-1.jpg";
 import car2 from "@/assets/featured-car-2.jpg";
 import car3 from "@/assets/featured-car-3.jpg";
+import toyoace1 from "@/assets/toyoace-1.jpg";
+import toyoace2 from "@/assets/toyoace-2.jpg";
+import toyoace3 from "@/assets/toyoace-3.jpg";
+import toyoace4 from "@/assets/toyoace-4.jpg";
+import cx51 from "@/assets/cx5-1.jpg";
+import cx52 from "@/assets/cx5-2.jpg";
+import cx53 from "@/assets/cx5-3.jpg";
+import cx54 from "@/assets/cx5-4.jpg";
 
 const inventoryData = [
   {
     id: 1,
     make: "Toyota",
+    model: "Toyoace 2 Ton",
+    year: 2019,
+    price: "Contact for Price",
+    images: [toyoace1, toyoace2, toyoace3, toyoace4],
+    mileage: "45,000 km",
+    fuel: "Diesel",
+    transmission: "Manual",
+    engine: "3.0L Diesel",
+    color: "Yellow",
+    status: "Available",
+    location: "Dar es Salaam",
+    category: "Lorry",
+  },
+  {
+    id: 2,
+    make: "Mazda",
+    model: "CX-5",
+    year: 2015,
+    price: "Contact for Price",
+    images: [cx51, cx52, cx53, cx54],
+    mileage: "68,000 km",
+    fuel: "Petrol",
+    transmission: "Automatic",
+    engine: "2.0L SkyActiv",
+    color: "Dark Blue",
+    status: "Available",
+    location: "Dar es Salaam",
+    category: "SUV",
+  },
+  {
+    id: 3,
+    make: "Toyota",
     model: "Land Cruiser Prado",
     year: 2022,
     price: "Contact for Price",
-    image: car1,
+    images: [car1],
     mileage: "15,000 km",
     fuel: "Diesel",
     transmission: "Automatic",
@@ -41,14 +85,15 @@ const inventoryData = [
     color: "Pearl White",
     status: "Available",
     location: "Dar es Salaam",
+    category: "SUV",
   },
   {
-    id: 2,
+    id: 4,
     make: "Mercedes-Benz",
     model: "GLE 350",
     year: 2023,
     price: "Contact for Price",
-    image: car2,
+    images: [car2],
     mileage: "8,500 km",
     fuel: "Petrol",
     transmission: "Automatic",
@@ -56,14 +101,15 @@ const inventoryData = [
     color: "Obsidian Black",
     status: "Available",
     location: "Dar es Salaam",
+    category: "SUV",
   },
   {
-    id: 3,
+    id: 5,
     make: "BMW",
     model: "X5 xDrive40i",
     year: 2021,
     price: "Contact for Price",
-    image: car3,
+    images: [car3],
     mileage: "22,000 km",
     fuel: "Petrol",
     transmission: "Automatic",
@@ -71,14 +117,15 @@ const inventoryData = [
     color: "Carbon Black",
     status: "Available",
     location: "Dar es Salaam",
+    category: "SUV",
   },
   {
-    id: 4,
+    id: 6,
     make: "Toyota",
     model: "Hilux Double Cab",
     year: 2023,
     price: "Contact for Price",
-    image: car1,
+    images: [car1],
     mileage: "5,200 km",
     fuel: "Diesel",
     transmission: "Automatic",
@@ -86,42 +133,22 @@ const inventoryData = [
     color: "Attitude Black",
     status: "In Transit",
     location: "En Route",
-  },
-  {
-    id: 5,
-    make: "Nissan",
-    model: "Patrol Y62",
-    year: 2022,
-    price: "Contact for Price",
-    image: car2,
-    mileage: "18,000 km",
-    fuel: "Petrol",
-    transmission: "Automatic",
-    engine: "5.6L V8",
-    color: "Moonlight White",
-    status: "Available",
-    location: "Dar es Salaam",
-  },
-  {
-    id: 6,
-    make: "Range Rover",
-    model: "Sport HSE",
-    year: 2021,
-    price: "Contact for Price",
-    image: car3,
-    mileage: "28,000 km",
-    fuel: "Diesel",
-    transmission: "Automatic",
-    engine: "3.0L TDV6",
-    color: "Santorini Black",
-    status: "Available",
-    location: "Dar es Salaam",
+    category: "Pickup",
   },
 ];
 
-const makes = ["All", "Toyota", "Mercedes-Benz", "BMW", "Nissan", "Range Rover"];
+const makes = ["All", "Toyota", "Mazda", "Mercedes-Benz", "BMW"];
 const transmissions = ["All", "Automatic", "Manual"];
 const fuelTypes = ["All", "Petrol", "Diesel", "Hybrid"];
+
+const searchHints = [
+  "2 Ton Lorry",
+  "Toyota Toyoace",
+  "Mazda CX-5",
+  "Land Cruiser",
+  "SUV",
+  "Automatic",
+];
 
 const Inventory = () => {
   const [selectedMake, setSelectedMake] = useState("All");
@@ -129,12 +156,21 @@ const Inventory = () => {
   const [selectedFuel, setSelectedFuel] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
   const [compareList, setCompareList] = useState<number[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showHints, setShowHints] = useState(false);
 
   const filteredInventory = inventoryData.filter((car) => {
     const makeMatch = selectedMake === "All" || car.make === selectedMake;
     const transmissionMatch = selectedTransmission === "All" || car.transmission === selectedTransmission;
     const fuelMatch = selectedFuel === "All" || car.fuel === selectedFuel;
-    return makeMatch && transmissionMatch && fuelMatch;
+    
+    const searchMatch = searchQuery === "" || 
+      car.make.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      car.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      car.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      `${car.make} ${car.model}`.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    return makeMatch && transmissionMatch && fuelMatch && searchMatch;
   });
 
   const comparedVehicles = inventoryData.filter((car) => compareList.includes(car.id));
@@ -157,6 +193,11 @@ const Inventory = () => {
     setCompareList([]);
   };
 
+  const handleHintClick = (hint: string) => {
+    setSearchQuery(hint);
+    setShowHints(false);
+  };
+
   return (
     <section id="inventory" className="py-24 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -167,6 +208,48 @@ const Inventory = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Swipe through our selection of premium vehicles available for import from Dar es Salaam to Malawi.
           </p>
+
+          {/* Search Bar */}
+          <div className="max-w-xl mx-auto mb-6">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search vehicles (e.g., 2 Ton Lorry, Toyota Toyoace...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setShowHints(true)}
+                onBlur={() => setTimeout(() => setShowHints(false), 200)}
+                className="pl-12 pr-10 py-6 text-lg bg-background border-border"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+              
+              {/* Search Hints */}
+              {showHints && !searchQuery && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-20 p-3">
+                  <p className="text-xs text-muted-foreground mb-2 px-2">Popular searches</p>
+                  <div className="flex flex-wrap gap-2">
+                    {searchHints.map((hint) => (
+                      <button
+                        key={hint}
+                        onClick={() => handleHintClick(hint)}
+                        className="px-3 py-1.5 text-sm bg-secondary hover:bg-primary hover:text-primary-foreground rounded-full transition-colors"
+                      >
+                        {hint}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* Filter Toggle & Compare Button */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -271,10 +354,9 @@ const Inventory = () => {
                       : "border-border hover:border-primary/50"
                   }`}>
                     <div className="relative overflow-hidden">
-                      <img
-                        src={car.image}
-                        alt={`${car.make} ${car.model}`}
-                        className="w-full h-56 object-cover hover:scale-110 transition-transform duration-500"
+                      <ImageGallery 
+                        images={car.images} 
+                        alt={`${car.make} ${car.model}`} 
                       />
                       <Badge 
                         className={`absolute top-4 right-4 ${
@@ -290,7 +372,7 @@ const Inventory = () => {
                       </Badge>
                       
                       {/* Compare Checkbox */}
-                      <div className="absolute bottom-4 right-4">
+                      <div className="absolute bottom-4 right-4 z-10">
                         <label 
                           className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all ${
                             compareList.includes(car.id)
