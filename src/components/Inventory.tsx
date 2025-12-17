@@ -199,7 +199,7 @@ const Inventory = () => {
   };
 
   return (
-    <section id="inventory" className="py-24 bg-secondary/30">
+    <section id="inventory" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -220,7 +220,7 @@ const Inventory = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setShowHints(true)}
                 onBlur={() => setTimeout(() => setShowHints(false), 200)}
-                className="pl-12 pr-10 py-6 text-lg bg-background border-border"
+                className="pl-12 pr-10 py-6 text-lg bg-background border-border focus:border-primary shadow-sm"
               />
               {searchQuery && (
                 <button
@@ -233,14 +233,14 @@ const Inventory = () => {
               
               {/* Search Hints */}
               {showHints && !searchQuery && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-lg shadow-lg z-20 p-3">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-lg z-20 p-3">
                   <p className="text-xs text-muted-foreground mb-2 px-2">Popular searches</p>
                   <div className="flex flex-wrap gap-2">
                     {searchHints.map((hint) => (
                       <button
                         key={hint}
                         onClick={() => handleHintClick(hint)}
-                        className="px-3 py-1.5 text-sm bg-secondary hover:bg-primary hover:text-primary-foreground rounded-full transition-colors"
+                        className="px-3 py-1.5 text-sm bg-secondary text-foreground hover:bg-primary hover:text-white rounded-full transition-colors font-medium"
                       >
                         {hint}
                       </button>
@@ -256,7 +256,7 @@ const Inventory = () => {
             <Button
               variant="outline"
               onClick={() => setShowFilters(!showFilters)}
-              className="border-border"
+              className="border-border bg-background hover:bg-secondary font-medium"
             >
               <Filter className="mr-2 h-4 w-4" />
               Filter Vehicles
@@ -267,7 +267,7 @@ const Inventory = () => {
               <Button
                 variant="default"
                 onClick={() => document.getElementById('comparison-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-primary"
+                className="bg-primary text-white font-semibold"
               >
                 <GitCompare className="mr-2 h-4 w-4" />
                 Compare ({compareList.length})
@@ -348,10 +348,10 @@ const Inventory = () => {
             <CarouselContent className="-ml-4">
               {filteredInventory.map((car) => (
                 <CarouselItem key={car.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className={`bg-card border-2 transition-all duration-300 overflow-hidden h-full ${
+                  <Card className={`bg-background border-2 transition-all duration-300 overflow-hidden h-full shadow-sm hover:shadow-md ${
                     compareList.includes(car.id) 
                       ? "border-primary ring-2 ring-primary/20" 
-                      : "border-border hover:border-primary/50"
+                      : "border-border hover:border-primary"
                   }`}>
                     <div className="relative overflow-hidden">
                       <ImageGallery 
@@ -359,7 +359,7 @@ const Inventory = () => {
                         alt={`${car.make} ${car.model}`} 
                       />
                       <Badge 
-                        className={`absolute top-4 right-4 ${
+                        className={`absolute top-4 right-4 font-semibold ${
                           car.status === "Available" 
                             ? "bg-green-600 text-white" 
                             : "bg-amber-600 text-white"
@@ -367,17 +367,17 @@ const Inventory = () => {
                       >
                         {car.status}
                       </Badge>
-                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
+                      <Badge className="absolute top-4 left-4 bg-primary text-white font-semibold">
                         {car.location}
                       </Badge>
                       
                       {/* Compare Checkbox */}
                       <div className="absolute bottom-4 right-4 z-10">
                         <label 
-                          className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all ${
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all shadow-sm ${
                             compareList.includes(car.id)
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-background/90 text-foreground hover:bg-background"
+                              ? "bg-primary text-white"
+                              : "bg-background text-foreground hover:bg-secondary"
                           }`}
                         >
                           <Checkbox
@@ -386,7 +386,7 @@ const Inventory = () => {
                             disabled={!compareList.includes(car.id) && compareList.length >= 4}
                             className="border-current data-[state=checked]:bg-transparent data-[state=checked]:text-current"
                           />
-                          <span className="text-xs font-medium">
+                          <span className="text-xs font-semibold">
                             {compareList.includes(car.id) ? "Added" : "Compare"}
                           </span>
                         </label>
@@ -396,10 +396,10 @@ const Inventory = () => {
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-1">
                           <CarIcon className="h-4 w-4 text-primary" />
-                          <span className="text-sm text-muted-foreground">{car.make}</span>
+                          <span className="text-sm text-muted-foreground font-medium">{car.make}</span>
                         </div>
                         <h3 className="text-xl font-bold text-foreground">{car.model}</h3>
-                        <p className="text-primary font-semibold">{car.price}</p>
+                        <p className="text-primary font-bold">{car.price}</p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
@@ -435,8 +435,8 @@ const Inventory = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="border-border bg-background hover:bg-secondary" />
-            <CarouselNext className="border-border bg-background hover:bg-secondary" />
+            <CarouselPrevious className="border-border bg-background hover:bg-secondary text-foreground" />
+            <CarouselNext className="border-border bg-background hover:bg-secondary text-foreground" />
           </Carousel>
         </div>
 

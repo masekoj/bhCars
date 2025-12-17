@@ -64,7 +64,7 @@ const About = () => {
 
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="bg-primary hover:bg-primary/90 text-white font-bold shadow-lg"
               onClick={scrollToContact}
             >
               Start Your Journey
@@ -72,23 +72,23 @@ const About = () => {
           </div>
 
           <div className="relative animate-fade-in">
-            <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl p-8 border border-border">
+            <div className="bg-gradient-to-br from-primary/5 to-secondary rounded-2xl p-8 border border-border shadow-sm">
               <div className="space-y-6">
-                <div className="bg-card p-6 rounded-xl border border-border">
+                <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
                   <div className="text-4xl font-bold text-primary mb-2">500+</div>
                   <div className="text-foreground font-semibold">Happy Customers</div>
                   <div className="text-sm text-muted-foreground mt-2">
                     Satisfied clients across Malawi
                   </div>
                 </div>
-                <div className="bg-card p-6 rounded-xl border border-border">
+                <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
                   <div className="text-4xl font-bold text-primary mb-2">10+</div>
                   <div className="text-foreground font-semibold">Years Experience</div>
                   <div className="text-sm text-muted-foreground mt-2">
                     In vehicle import industry
                   </div>
                 </div>
-                <div className="bg-card p-6 rounded-xl border border-border">
+                <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
                   <div className="text-4xl font-bold text-primary mb-2">100%</div>
                   <div className="text-foreground font-semibold">Quality Guarantee</div>
                   <div className="text-sm text-muted-foreground mt-2">

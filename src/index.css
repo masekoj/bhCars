@@ -2,68 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* 
+  Professional Corporate Design System
+  Primary: White backgrounds, Red accents, Black text
+  Premium vehicle import aesthetic - clean, trustworthy, luxurious
 */
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    /* Clean white background for spacious feel */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    /* Cards slightly off-white for depth */
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 0 84% 55%;
+    /* Premium Red accent - energetic & exciting */
+    --primary: 0 85% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 95%;
+    /* Subtle gray sections */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 12%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    /* Muted tones with strong readability */
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 0 0% 85%;
-    --accent-foreground: 0 0% 10%;
+    /* Light accent for highlights */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 85% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 84% 55%;
+    /* Subtle borders for sophistication */
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 85% 45%;
 
     --radius: 0.5rem;
     
-    /* Custom automotive theme tokens */
-    --chrome: 0 0% 75%;
+    /* Custom premium automotive tokens */
+    --chrome: 0 0% 90%;
     --dark-chrome: 0 0% 25%;
-    --hero-gradient: linear-gradient(135deg, hsl(0 0% 7%) 0%, hsl(0 0% 15%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(0 0% 10%) 0%, hsl(0 0% 12%) 100%);
-    --accent-glow: 0 0 30px hsl(0 84% 55% / 0.3);
+    
+    /* Trust & premium accent colors */
+    --trust-blue: 210 80% 45%;
+    --trust-gold: 45 90% 50%;
+    
+    /* Gradient overlays */
+    --hero-gradient: linear-gradient(135deg, hsl(0 0% 8% / 0.7) 0%, hsl(0 0% 15% / 0.5) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
+    --accent-glow: 0 0 30px hsl(0 85% 45% / 0.2);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* Sidebar - professional light */
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 0 0% 12%;
+    --sidebar-primary: 0 85% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 94%;
+    --sidebar-accent-foreground: 0 0% 12%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 85% 45%;
   }
 
   .dark {
+    /* Dark mode with same red accent */
     --background: 0 0% 5%;
     --foreground: 0 0% 98%;
 
@@ -73,32 +83,33 @@ All colors MUST be HSL.
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 84% 60%;
+    --primary: 0 85% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 18%;
+    --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 12%;
+    --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 0 0% 90%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 85% 55%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 0 84% 60%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --ring: 0 85% 55%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 85% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 85% 55%;
   }
 }
 
@@ -108,6 +119,28 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Ensure high contrast text throughout */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Trust badge styling */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, hsl(var(--trust-gold) / 0.1), hsl(var(--trust-gold) / 0.05));
+    border: 1px solid hsl(var(--trust-gold) / 0.3);
+    color: hsl(45 80% 35%);
+  }
+  
+  /* Premium section styling */
+  .section-premium {
+    @apply relative overflow-hidden;
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 50%, hsl(var(--background)) 100%);
   }
 }

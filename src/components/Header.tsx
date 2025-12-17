@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -62,7 +62,7 @@ const Header = () => {
             <Button
               variant="outline"
               size="sm"
-              className="border-border hover:bg-secondary"
+              className="border-foreground/20 text-foreground hover:bg-secondary hover:border-primary"
               onClick={() => scrollToSection("contact")}
             >
               <Phone className="mr-2 h-4 w-4" />
@@ -70,7 +70,7 @@ const Header = () => {
             </Button>
             <Button
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md"
               onClick={() => scrollToSection("contact")}
             >
               Get Quote

@@ -68,7 +68,7 @@ const FeaturedVehicles = () => {
           {vehicles.map((vehicle, index) => (
             <Card
               key={vehicle.id}
-              className="group bg-card border-border hover:border-primary/50 transition-all duration-300 overflow-hidden animate-fade-in"
+              className="group bg-background border-border hover:border-primary hover:shadow-lg transition-all duration-300 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative overflow-hidden">
@@ -77,7 +77,7 @@ const FeaturedVehicles = () => {
                   alt={vehicle.name}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground">
+                <Badge className="absolute top-4 right-4 bg-primary text-white font-semibold">
                   {vehicle.badge}
                 </Badge>
               </div>
@@ -85,25 +85,25 @@ const FeaturedVehicles = () => {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-2xl font-bold text-foreground mb-1">{vehicle.name}</h3>
-                    <p className="text-primary font-semibold text-lg">{vehicle.price}</p>
+                    <p className="text-primary font-bold text-lg">{vehicle.price}</p>
                   </div>
-                  <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+                  <span className="text-sm text-foreground bg-secondary px-3 py-1 rounded-full font-medium">
                     {vehicle.year}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 mb-6">
                   <div className="flex items-center space-x-2">
-                    <Gauge className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{vehicle.mileage}</span>
+                    <Gauge className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground font-medium">{vehicle.mileage}</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Fuel className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{vehicle.fuel}</span>
+                    <Fuel className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground font-medium">{vehicle.fuel}</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Settings className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{vehicle.transmission}</span>
+                    <Settings className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground font-medium">{vehicle.transmission}</span>
                   </div>
                 </div>
 
@@ -122,7 +122,7 @@ const FeaturedVehicles = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-border hover:bg-secondary"
+            className="border-foreground/20 hover:bg-secondary hover:border-primary font-semibold"
             onClick={scrollToContact}
           >
             View All Vehicles

@@ -40,12 +40,12 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
   ];
 
   return (
-    <Card className="bg-card border-border animate-fade-in">
+    <Card className="bg-background border-border shadow-md animate-fade-in">
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <CardTitle className="text-2xl font-display text-foreground">
           Compare Vehicles ({vehicles.length})
         </CardTitle>
-        <Button variant="ghost" size="sm" onClick={onClear} className="text-muted-foreground hover:text-foreground">
+        <Button variant="ghost" size="sm" onClick={onClear} className="text-muted-foreground hover:text-primary hover:bg-primary/10">
           Clear All
         </Button>
       </CardHeader>
@@ -54,18 +54,18 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
           <table className="w-full min-w-[600px]">
             <thead>
               <tr>
-                <th className="text-left p-3 text-muted-foreground font-medium w-40">Specification</th>
+                <th className="text-left p-3 text-foreground font-semibold w-40">Specification</th>
                 {vehicles.map((vehicle) => (
                   <th key={vehicle.id} className="p-3 min-w-[200px]">
                     <div className="relative">
                       <button
                         onClick={() => onRemove(vehicle.id)}
-                        className="absolute -top-2 -right-2 p-1 bg-destructive text-destructive-foreground rounded-full hover:bg-destructive/80 transition-colors z-10"
+                        className="absolute -top-2 -right-2 p-1 bg-primary text-white rounded-full hover:bg-primary/80 transition-colors z-10"
                         aria-label={`Remove ${vehicle.make} ${vehicle.model} from comparison`}
                       >
                         <X className="h-3 w-3" />
                       </button>
-                      <div className="relative overflow-hidden rounded-lg mb-3">
+                      <div className="relative overflow-hidden rounded-lg mb-3 border border-border">
                         <img
                           src={vehicle.images[0]}
                           alt={`${vehicle.make} ${vehicle.model}`}
@@ -73,7 +73,7 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
                         />
                       </div>
                       <h4 className="font-bold text-foreground text-sm">{vehicle.make}</h4>
-                      <p className="text-primary font-semibold">{vehicle.model}</p>
+                      <p className="text-primary font-bold">{vehicle.model}</p>
                     </div>
                   </th>
                 ))}
@@ -83,10 +83,10 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
               {specs.map((spec, index) => {
                 const Icon = spec.icon;
                 return (
-                  <tr key={spec.key} className={index % 2 === 0 ? "bg-secondary/30" : ""}>
-                    <td className="p-3 text-muted-foreground">
+                  <tr key={spec.key} className={index % 2 === 0 ? "bg-secondary" : "bg-background"}>
+                    <td className="p-3 text-muted-foreground font-medium">
                       <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4" />
+                        <Icon className="h-4 w-4 text-primary" />
                         {spec.label}
                       </div>
                     </td>
@@ -98,11 +98,11 @@ const VehicleComparison = ({ vehicles, onRemove, onClear }: VehicleComparisonPro
                   </tr>
                 );
               })}
-              <tr className="border-t border-border">
-                <td className="p-3 text-muted-foreground font-medium">Price</td>
+              <tr className="border-t border-border bg-secondary">
+                <td className="p-3 text-foreground font-semibold">Price</td>
                 {vehicles.map((vehicle) => (
                   <td key={vehicle.id} className="p-3 text-center">
-                    <span className="text-primary font-bold">{vehicle.price}</span>
+                    <span className="text-primary font-bold text-lg">{vehicle.price}</span>
                   </td>
                 ))}
               </tr>
