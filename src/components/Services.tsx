@@ -36,7 +36,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-secondary/30">
+    <section id="services" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -51,12 +51,12 @@ const Services = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="bg-card border-border hover:border-primary/50 transition-all duration-300 animate-fade-in group"
+              className="bg-background border-border hover:border-primary hover:shadow-lg transition-all duration-300 animate-fade-in group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-8">
-                <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="h-8 w-8 text-primary" />
+                <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                  <service.icon className="h-8 w-8 text-primary group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
