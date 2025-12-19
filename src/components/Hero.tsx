@@ -36,7 +36,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl text-white/80 mb-8 max-w-2xl font-medium">
-            let BH Car Imports bring you you that vehicle you need all the way from Japan to Malawi. 
+            let <em>BH Car Imports</em> bring you that vehicle you need all the way from Japan to Malawi. 
             Quality, reliability, and exceptional service guaranteed.
           </p>
 
