@@ -32,7 +32,7 @@ const Hero = () => {
 
           <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight">
             Your Gateway to
-            <span className="block text-primary">Quality/Durable Vehicles</span>
+            <span className="block text-primary">the Car You Want!</span>
           </h1>
 
           <p className="text-xl text-white/80 mb-8 max-w-2xl font-medium">
