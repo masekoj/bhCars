@@ -29,7 +29,7 @@ const About = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Trusted Expertise</h4>
                   <p className="text-muted-foreground">
-                    Years of experience in international vehicle imports
+                    10+Years of experience in international vehicle imports
                   </p>
                 </div>
               </div>
