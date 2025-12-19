@@ -59,7 +59,7 @@ const FeaturedVehicles = () => {
             Featured Vehicles
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore our selection of premium imported vehicles. Each car is carefully inspected 
+            Explore our selection of available vehicles. Each car is carefully inspected 
             and certified for quality.
           </p>
         </div>
