@@ -17,7 +17,7 @@ const Footer = () => {
           <div>
             <img src={bhLogo} alt="BH Car Imports" className="h-16 w-auto mb-4 rounded" />
             <p className="text-white/70 mb-4">
-              Your trusted partner for premium vehicle imports from Dar es Salaam to Malawi.
+              Your trusted partner for durable vehicle imports from Japan to Malawi.
             </p>
             <div className="flex space-x-4">
               <a
@@ -101,13 +101,13 @@ const Footer = () => {
                   href="mailto:info@bhcarimports.com"
                   className="text-white/70 hover:text-primary transition-colors"
                 >
-                  info@bhcarimports.com
+                  boydhamella@gmail.com
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-white/70">
-                  Dar es Salaam to Malawi
+                  Japan to Malawi
                 </span>
               </li>
             </ul>
