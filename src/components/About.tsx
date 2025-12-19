@@ -18,7 +18,7 @@ const About = () => {
               Why Choose BH Car Imports?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              With years of experience in vehicle importation between Dar es Salaam and Malawi, 
+              With years of experience in vehicle importation from Japan to Malawi, 
               we've built a reputation for reliability, quality, and exceptional customer service. 
               Our commitment is to make your car import experience smooth and hassle-free.
             </p>
@@ -38,7 +38,7 @@ const About = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Competitive Pricing</h4>
                   <p className="text-muted-foreground">
-                    Best value for premium quality vehicles
+                    Best value for Durable and quality vehicles
                   </p>
                 </div>
               </div>
