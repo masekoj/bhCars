@@ -32,11 +32,11 @@ const Hero = () => {
 
           <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight">
             Your Gateway to
-            <span className="block text-primary">Quality Vehicles</span>
+            <span className="block text-primary">Quality/Durable Vehicles</span>
           </h1>
 
           <p className="text-xl text-white/80 mb-8 max-w-2xl font-medium">
-            BH Car Imports specializes in bringing you premium vehicles from Dar es Salaam to Malawi. 
+            let BH Car Imports bring you you that vehicle you need all the way from Japan to Malawi. 
             Quality, reliability, and exceptional service guaranteed.
           </p>
 
