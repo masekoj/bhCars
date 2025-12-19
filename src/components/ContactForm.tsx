@@ -83,7 +83,7 @@ const ContactForm = () => {
                       href="mailto:info@bhcarimports.com"
                       className="text-muted-foreground hover:text-primary transition-colors font-medium"
                     >
-                      info@bhcarimports.com
+                      boydhamella@gmail.com
                     </a>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ const ContactForm = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Location</h4>
                     <p className="text-muted-foreground font-medium">
-                      Importing from Dar es Salaam to Malawi
+                      Importing from Japan to Malawi
                     </p>
                   </div>
                 </div>
@@ -122,8 +122,8 @@ const ContactForm = () => {
             <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
               <h4 className="font-semibold text-foreground mb-3">Business Hours</h4>
               <div className="space-y-2 text-muted-foreground font-medium">
-                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p>Saturday: 9:00 AM - 4:00 PM</p>
+                <p>Monday - Friday: 7:00 AM - 6:00 PM</p>
+                <p>Saturday: 8:00 AM - 4:00 PM</p>
                 <p>Sunday: Closed</p>
               </div>
             </div>
@@ -142,7 +142,7 @@ const ContactForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="mt-2 bg-background border-border focus:border-primary"
-                  placeholder="John Doe"
+                  placeholder="type your name"
                 />
               </div>
 
@@ -156,7 +156,7 @@ const ContactForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="mt-2 bg-background border-border focus:border-primary"
-                  placeholder="john@example.com"
+                  placeholder="**@gmail.com"
                 />
               </div>
 
@@ -169,7 +169,7 @@ const ContactForm = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="mt-2 bg-background border-border focus:border-primary"
-                  placeholder="+265 99 123 4567"
+                  placeholder="enter number"
                 />
               </div>
 
