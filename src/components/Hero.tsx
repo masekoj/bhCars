@@ -36,8 +36,8 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl text-white/80 mb-8 max-w-2xl font-medium">
-            let <em>BH Car Imports</em> bring you that vehicle you need all the way from Japan to Malawi. 
-            Quality, reliability, and exceptional service guaranteed.
+            <em>let</em> <b>BH Car Imports</b> <em>bring you that vehicle you need all the way from Japan to Malawi. 
+            Quality, reliability, and exceptional service guaranteed.</em>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
