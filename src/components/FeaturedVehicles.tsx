@@ -15,7 +15,7 @@ const vehicles = [
     image: car1,
     year: "2019",
     mileage: "45,000 km",
-    fuel: "Disel",
+    fuel: "Diesel",
     transmission: "manual",
     badge: "New Arrival",
   },
@@ -37,7 +37,7 @@ const vehicles = [
     image: car3,
     year: "2012",
     mileage: "50,000 km",
-    fuel: "Petrol",
+    fuel: "Diesel",
     transmission: "manual",
     badge: "Best Value",
   },
@@ -59,7 +59,7 @@ const FeaturedVehicles = () => {
             Featured Vehicles
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore our selection of available vehicles. Each car is carefully inspected 
+            Explore our selection of available vehicles, each carefully inspected 
             and certified for quality.
           </p>
         </div>
