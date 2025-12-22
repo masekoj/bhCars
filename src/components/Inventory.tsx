@@ -28,7 +28,7 @@ import VehicleComparison from "./VehicleComparison";
 import ImageGallery from "./ImageGallery";
 import car1 from "@/assets/featured-car-1.jpg";
 import car2 from "@/assets/featured-car-2.jpg";
-import car3 from "@/assets/featured-car-3.jpg";
+import car3 from "@/assets/featured-car-3.jpeg";
 import toyoace1 from "@/assets/toyoace-1.jpg";
 import toyoace2 from "@/assets/toyoace-2.jpg";
 import toyoace3 from "@/assets/toyoace-3.jpg";
