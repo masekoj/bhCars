@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Gauge, Fuel, Settings } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
-import car1 from "@/assets/featured-car-1.jpg";
-import car2 from "@/assets/featured-car-2.jpg";
-import car3 from "@/assets/featured-car-3.jpg";
+import car1 from "@/assets/toyoace-3.jpg";
+import car2 from "@/assets/cx5-3.jpg";
+import car3 from "@/assets/hero-lorry.jpg";
 
 const vehicles = [
   {
