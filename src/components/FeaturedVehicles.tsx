@@ -5,7 +5,7 @@ import { ChevronRight, Gauge, Fuel, Settings } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import car1 from "@/assets/toyoace-3.jpg";
 import car2 from "@/assets/cx5-3.jpg";
-import car3 from "@/assets/hero-lorry.jpg";
+import car3 from "@/assets/featured-car-3.jpeg";
 
 const vehicles = [
   {
