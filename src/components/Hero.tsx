@@ -27,12 +27,12 @@ const Hero = () => {
         <div className="max-w-3xl animate-fade-in">
           <div className="inline-flex items-center px-4 py-2 bg-primary/20 border border-primary/40 rounded-full mb-6">
             <Car className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm text-primary font-semibold">Premium Vehicle Imports</span>
+            <span className="text-sm text-primary font-semibold">Bh Car Imports</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight">
             Your Gateway to
-            <span className="block text-primary">the Car You Want!</span>
+            <span className="block text-primary">any Car You Want!</span>
           </h1>
 
           <p className="text-xl text-white/80 mb-8 max-w-2xl font-medium">
@@ -46,7 +46,7 @@ const Hero = () => {
               className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 font-bold shadow-lg animate-glow"
               onClick={() => scrollToSection("vehicles")}
             >
-              Browse Vehicles
+              See Vehicles
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
