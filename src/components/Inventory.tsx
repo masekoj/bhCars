@@ -116,7 +116,7 @@ const inventoryData = [
     engine: "3.0L diesel",
     color: "white",
     status: "Available",
-    location: "lilongwe",
+    location: "Lilongwe",
     category: "SUV",
   },
   {
