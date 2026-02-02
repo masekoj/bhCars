@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FeaturedVehicles from "@/components/FeaturedVehicles";
@@ -7,12 +8,23 @@ import About from "@/components/About";
 import ContactForm from "@/components/ContactForm";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import BottomNavigation from "@/components/BottomNavigation";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
+  // Smooth scroll behavior for the entire page
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => {
+      document.documentElement.style.scrollBehavior = "auto";
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <FeaturedVehicles />
         <Inventory />
@@ -22,6 +34,11 @@ const Index = () => {
         <Newsletter />
       </main>
       <Footer />
+      
+      {/* Floating Elements */}
+      <BottomNavigation />
+      <FloatingWhatsApp />
+      <ScrollToTop />
     </div>
   );
 };
