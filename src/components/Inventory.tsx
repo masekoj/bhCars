@@ -4,13 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { 
   Gauge, 
   Fuel, 
@@ -21,11 +14,14 @@ import {
   ChevronDown,
   GitCompare,
   Search,
-  X
+  X,
+  Heart,
+  Eye
 } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import VehicleComparison from "./VehicleComparison";
 import ImageGallery from "./ImageGallery";
+import PhotoGalleryModal from "./PhotoGalleryModal";
 import car1 from "@/assets/featured-car-1.jpeg";
 import car2 from "@/assets/featured-car-2.jpeg";
 import car3 from "@/assets/featured-car-3.jpeg";
@@ -52,7 +48,7 @@ const inventoryData = [
     engine: "3.0L Diesel",
     color: "Yellow",
     status: "Available",
-    location: "Lilowgwe",
+    location: "Lilongwe",
     category: "Lorry",
   },
   {
@@ -82,7 +78,7 @@ const inventoryData = [
     fuel: "Petrol",
     transmission: "Automatic",
     engine: "1.0L Turbo",
-    color: "black",
+    color: "Black",
     status: "Available",
     location: "Lilongwe",
     category: "SUV",
@@ -98,7 +94,7 @@ const inventoryData = [
     fuel: "Petrol",
     transmission: "Automatic",
     engine: "1.3L V6",
-    color: "silver",
+    color: "Silver",
     status: "Available",
     location: "Dar es Salaam",
     category: "SUV",
@@ -113,11 +109,11 @@ const inventoryData = [
     mileage: "22,000 km",
     fuel: "Diesel",
     transmission: "Automatic",
-    engine: "3.0L diesel",
-    color: "white",
+    engine: "3.0L Diesel",
+    color: "White",
     status: "Available",
     location: "Lilongwe",
-    category: "SUV",
+    category: "Lorry",
   },
   {
     id: 6,
@@ -127,17 +123,17 @@ const inventoryData = [
     price: "Contact for Price",
     images: [car1],
     mileage: "5,200 km",
-    fuel: "petol",
+    fuel: "Petrol",
     transmission: "Automatic",
     engine: "1.0L Turbo",
-    color: "black",
+    color: "Black",
     status: "In Transit",
     location: "En Route",
-    category: "Pickup",
+    category: "SUV",
   },
 ];
 
-const makes = ["All", "Toyota", "Mazda", "Mercedes-Benz", "BMW"];
+const makes = ["All", "Toyota", "Mazda", "Nissan"];
 const transmissions = ["All", "Automatic", "Manual"];
 const fuelTypes = ["All", "Petrol", "Diesel", "Hybrid"];
 
@@ -145,7 +141,6 @@ const searchHints = [
   "2 Ton Lorry",
   "Toyota Toyoace",
   "Mazda CX-5",
-  "Land Cruiser",
   "SUV",
   "Automatic",
 ];
@@ -156,8 +151,12 @@ const Inventory = () => {
   const [selectedFuel, setSelectedFuel] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
   const [compareList, setCompareList] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showHints, setShowHints] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [galleryTitle, setGalleryTitle] = useState("");
 
   const filteredInventory = inventoryData.filter((car) => {
     const makeMatch = selectedMake === "All" || car.make === selectedMake;
@@ -185,6 +184,14 @@ const Inventory = () => {
     );
   };
 
+  const toggleFavorite = (id: number) => {
+    setFavorites((prev) =>
+      prev.includes(id)
+        ? prev.filter((carId) => carId !== id)
+        : [...prev, id]
+    );
+  };
+
   const removeFromCompare = (id: number) => {
     setCompareList((prev) => prev.filter((carId) => carId !== id));
   };
@@ -198,15 +205,21 @@ const Inventory = () => {
     setShowHints(false);
   };
 
+  const openGallery = (images: string[], title: string) => {
+    setGalleryImages(images);
+    setGalleryTitle(title);
+    setGalleryOpen(true);
+  };
+
   return (
-    <section id="inventory" className="py-24 bg-secondary">
+    <section id="inventory" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
             Browse Our Inventory
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Swipe through our selection of vehicles available for import.
+            Explore our selection of quality vehicles available for import.
           </p>
 
           {/* Search Bar */}
@@ -215,12 +228,12 @@ const Inventory = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Search for a car (e.g., 2 Ton Lorry, Toyota Toyoace...)"
+                placeholder="Search vehicles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setShowHints(true)}
                 onBlur={() => setTimeout(() => setShowHints(false), 200)}
-                className="pl-12 pr-10 py-6 text-lg bg-background border-border focus:border-primary shadow-sm"
+                className="pl-12 pr-10 py-6 text-lg bg-card border-border focus:border-primary shadow-sm rounded-xl"
               />
               {searchQuery && (
                 <button
@@ -233,14 +246,14 @@ const Inventory = () => {
               
               {/* Search Hints */}
               {showHints && !searchQuery && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-lg z-20 p-3">
-                  <p className="text-xs text-muted-foreground mb-2 px-2">Popular searches</p>
+                <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-20 p-4">
+                  <p className="text-xs text-muted-foreground mb-3 px-2">Popular searches</p>
                   <div className="flex flex-wrap gap-2">
                     {searchHints.map((hint) => (
                       <button
                         key={hint}
                         onClick={() => handleHintClick(hint)}
-                        className="px-3 py-1.5 text-sm bg-secondary text-foreground hover:bg-primary hover:text-white rounded-full transition-colors font-medium"
+                        className="px-4 py-2 text-sm bg-secondary text-foreground hover:bg-primary hover:text-white rounded-full transition-all font-medium"
                       >
                         {hint}
                       </button>
@@ -256,10 +269,10 @@ const Inventory = () => {
             <Button
               variant="outline"
               onClick={() => setShowFilters(!showFilters)}
-              className="border-border bg-background hover:bg-secondary font-medium"
+              className="border-border bg-card hover:bg-secondary font-medium rounded-xl"
             >
               <Filter className="mr-2 h-4 w-4" />
-              Filter Vehicles
+              Filter
               <ChevronDown className={`ml-2 h-4 w-4 transition-transform ${showFilters ? "rotate-180" : ""}`} />
             </Button>
             
@@ -267,188 +280,199 @@ const Inventory = () => {
               <Button
                 variant="default"
                 onClick={() => document.getElementById('comparison-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-primary text-white font-semibold"
+                className="bg-primary text-white font-semibold rounded-xl"
               >
                 <GitCompare className="mr-2 h-4 w-4" />
                 Compare ({compareList.length})
               </Button>
             )}
           </div>
-          
-          <p className="text-sm text-muted-foreground mb-4">
-            Select up to 4 vehicles to compare specifications side by side
-          </p>
 
           {/* Filters */}
           {showFilters && (
-            <div className="flex flex-wrap justify-center gap-4 mb-8 animate-fade-in">
-              <div className="flex flex-col items-start">
-                <span className="text-sm text-muted-foreground mb-2">Make</span>
-                <div className="flex flex-wrap gap-2">
-                  {makes.map((make) => (
-                    <Button
-                      key={make}
-                      variant={selectedMake === make ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedMake(make)}
-                      className={selectedMake === make ? "bg-primary" : "border-border"}
-                    >
-                      {make}
-                    </Button>
-                  ))}
+            <div className="bg-card border border-border rounded-2xl p-6 mb-8 animate-fade-in max-w-3xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <span className="text-sm text-muted-foreground mb-3 block font-medium">Make</span>
+                  <div className="flex flex-wrap gap-2">
+                    {makes.map((make) => (
+                      <Button
+                        key={make}
+                        variant={selectedMake === make ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setSelectedMake(make)}
+                        className={`rounded-full ${selectedMake === make ? "bg-primary" : "border-border"}`}
+                      >
+                        {make}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col items-start">
-                <span className="text-sm text-muted-foreground mb-2">Transmission</span>
-                <div className="flex flex-wrap gap-2">
-                  {transmissions.map((trans) => (
-                    <Button
-                      key={trans}
-                      variant={selectedTransmission === trans ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedTransmission(trans)}
-                      className={selectedTransmission === trans ? "bg-primary" : "border-border"}
-                    >
-                      {trans}
-                    </Button>
-                  ))}
+                <div>
+                  <span className="text-sm text-muted-foreground mb-3 block font-medium">Transmission</span>
+                  <div className="flex flex-wrap gap-2">
+                    {transmissions.map((trans) => (
+                      <Button
+                        key={trans}
+                        variant={selectedTransmission === trans ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setSelectedTransmission(trans)}
+                        className={`rounded-full ${selectedTransmission === trans ? "bg-primary" : "border-border"}`}
+                      >
+                        {trans}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col items-start">
-                <span className="text-sm text-muted-foreground mb-2">Fuel Type</span>
-                <div className="flex flex-wrap gap-2">
-                  {fuelTypes.map((fuel) => (
-                    <Button
-                      key={fuel}
-                      variant={selectedFuel === fuel ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedFuel(fuel)}
-                      className={selectedFuel === fuel ? "bg-primary" : "border-border"}
-                    >
-                      {fuel}
-                    </Button>
-                  ))}
+                <div>
+                  <span className="text-sm text-muted-foreground mb-3 block font-medium">Fuel Type</span>
+                  <div className="flex flex-wrap gap-2">
+                    {fuelTypes.map((fuel) => (
+                      <Button
+                        key={fuel}
+                        variant={selectedFuel === fuel ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setSelectedFuel(fuel)}
+                        className={`rounded-full ${selectedFuel === fuel ? "bg-primary" : "border-border"}`}
+                      >
+                        {fuel}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </div>
 
-        {/* Carousel */}
-        <div className="px-12">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {filteredInventory.map((car) => (
-                <CarouselItem key={car.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className={`bg-background border-2 transition-all duration-300 overflow-hidden h-full shadow-sm hover:shadow-md ${
-                    compareList.includes(car.id) 
-                      ? "border-primary ring-2 ring-primary/20" 
-                      : "border-border hover:border-primary"
-                  }`}>
-                    <div className="relative overflow-hidden">
-                      <ImageGallery 
-                        images={car.images} 
-                        alt={`${car.make} ${car.model}`} 
+        {/* Vehicle Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredInventory.map((car, index) => (
+            <Card 
+              key={car.id}
+              className={`group bg-card border-border rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in ${
+                compareList.includes(car.id) ? "ring-2 ring-primary" : ""
+              }`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              {/* Image Container */}
+              <div className="relative overflow-hidden">
+                <div className="group-hover:scale-105 transition-transform duration-500">
+                  <ImageGallery 
+                    images={car.images} 
+                    alt={`${car.make} ${car.model}`} 
+                  />
+                </div>
+                
+                {/* Badges */}
+                <Badge 
+                  className={`absolute top-4 left-4 font-semibold ${
+                    car.status === "Available" 
+                      ? "bg-green-500 text-white" 
+                      : "bg-amber-500 text-white"
+                  }`}
+                >
+                  {car.status}
+                </Badge>
+                
+                {/* Quick Actions on Hover */}
+                <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => toggleFavorite(car.id)}
+                    className={`p-2 rounded-full shadow-md transition-colors ${
+                      favorites.includes(car.id) 
+                        ? "bg-primary text-white" 
+                        : "bg-white text-foreground hover:bg-primary hover:text-white"
+                    }`}
+                  >
+                    <Heart className={`h-4 w-4 ${favorites.includes(car.id) ? "fill-current" : ""}`} />
+                  </button>
+                  <button
+                    onClick={() => openGallery(car.images, `${car.year} ${car.make} ${car.model}`)}
+                    className="p-2 bg-white text-foreground rounded-full shadow-md hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <Eye className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+              
+              <CardContent className="p-6">
+                {/* Title & Price */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <CarIcon className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground font-medium">{car.make} • {car.year}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{car.model}</h3>
+                  <p className="text-primary font-bold text-lg">{car.price}</p>
+                </div>
+
+                {/* Specs Row */}
+                <div className="flex flex-wrap gap-3 mb-4">
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Gauge className="h-4 w-4" />
+                    <span>{car.mileage}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Fuel className="h-4 w-4" />
+                    <span>{car.fuel}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Settings className="h-4 w-4" />
+                    <span>{car.transmission}</span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-col gap-3">
+                  <WhatsAppButton 
+                    vehicleName={`${car.year} ${car.make} ${car.model}`}
+                    className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white"
+                  />
+                  
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => openGallery(car.images, `${car.year} ${car.make} ${car.model}`)}
+                      className="flex-1 border-border hover:bg-secondary rounded-lg"
+                    >
+                      <Eye className="mr-1 h-4 w-4" />
+                      Details
+                    </Button>
+                    <label 
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-all flex-1 justify-center text-sm font-medium ${
+                        compareList.includes(car.id)
+                          ? "bg-primary text-white"
+                          : "bg-secondary text-foreground hover:bg-primary hover:text-white"
+                      }`}
+                    >
+                      <Checkbox
+                        checked={compareList.includes(car.id)}
+                        onCheckedChange={() => toggleCompare(car.id)}
+                        disabled={!compareList.includes(car.id) && compareList.length >= 4}
+                        className="border-current data-[state=checked]:bg-transparent data-[state=checked]:text-current h-4 w-4"
                       />
-                      <Badge 
-                        className={`absolute top-4 right-4 font-semibold ${
-                          car.status === "Available" 
-                            ? "bg-green-600 text-white" 
-                            : "bg-amber-600 text-white"
-                        }`}
-                      >
-                        {car.status}
-                      </Badge>
-                      <Badge className="absolute top-4 left-4 bg-primary text-white font-semibold">
-                        {car.location}
-                      </Badge>
-                      
-                      {/* Compare Checkbox */}
-                      <div className="absolute bottom-4 right-4 z-10">
-                        <label 
-                          className={`flex items-center gap-2 px-3 py-1.5 rounded-full cursor-pointer transition-all shadow-sm ${
-                            compareList.includes(car.id)
-                              ? "bg-primary text-white"
-                              : "bg-background text-foreground hover:bg-secondary"
-                          }`}
-                        >
-                          <Checkbox
-                            checked={compareList.includes(car.id)}
-                            onCheckedChange={() => toggleCompare(car.id)}
-                            disabled={!compareList.includes(car.id) && compareList.length >= 4}
-                            className="border-current data-[state=checked]:bg-transparent data-[state=checked]:text-current"
-                          />
-                          <span className="text-xs font-semibold">
-                            {compareList.includes(car.id) ? "Added" : "Compare"}
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-1">
-                          <CarIcon className="h-4 w-4 text-primary" />
-                          <span className="text-sm text-muted-foreground font-medium">{car.make}</span>
-                        </div>
-                        <h3 className="text-xl font-bold text-foreground">{car.model}</h3>
-                        <p className="text-primary font-bold">{car.price}</p>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">{car.year}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Gauge className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">{car.mileage}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Fuel className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">{car.fuel}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Settings className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">{car.transmission}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 mb-4 text-sm">
-                        <span className="text-muted-foreground">Engine:</span>
-                        <span className="text-foreground font-medium">{car.engine}</span>
-                      </div>
-
-                      <WhatsAppButton 
-                        vehicleName={`${car.year} ${car.make} ${car.model}`}
-                        className="w-full"
-                      />
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="border-border bg-background hover:bg-secondary text-foreground" />
-            <CarouselNext className="border-border bg-background hover:bg-secondary text-foreground" />
-          </Carousel>
+                      Compare
+                    </label>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {filteredInventory.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No vehicles match your filters. Try adjusting your criteria.</p>
+            <p className="text-muted-foreground text-lg">No vehicles match your filters.</p>
           </div>
         )}
 
         {/* Comparison Section */}
         {comparedVehicles.length > 0 && (
-          <div id="comparison-section" className="mt-12 scroll-mt-24">
+          <div id="comparison-section" className="mt-16 scroll-mt-24">
             <VehicleComparison
               vehicles={comparedVehicles}
               onRemove={removeFromCompare}
@@ -457,13 +481,21 @@ const Inventory = () => {
           </div>
         )}
 
-        <div className="text-center mt-8">
-          <p className="text-muted-foreground">
+        <div className="text-center mt-12">
+          <p className="text-muted-foreground mb-4">
             Can't find what you're looking for? Contact us for custom orders!
           </p>
-          <WhatsAppButton className="mt-4" />
+          <WhatsAppButton className="bg-[#25D366] hover:bg-[#128C7E] text-white" />
         </div>
       </div>
+
+      {/* Photo Gallery Modal */}
+      <PhotoGalleryModal
+        isOpen={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        images={galleryImages}
+        title={galleryTitle}
+      />
     </section>
   );
 };
