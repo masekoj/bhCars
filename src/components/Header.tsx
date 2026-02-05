@@ -51,47 +51,8 @@ const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Left spacer for centering */}
-          <div className="w-20 md:hidden" />
-
-          {/* Centered Logo */}
-          <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
-            <img 
-              src={bhLogo} 
-              alt="BH Car Imports Logo" 
-              className="h-10 md:h-14 w-auto cursor-pointer transition-transform hover:scale-105" 
-              onClick={() => scrollToSection("home")}
-            />
-          </div>
-
-          {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex items-center justify-center flex-1 space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-primary transition-colors font-medium text-sm uppercase tracking-wide"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* Right Icons */}
-          <div className="flex items-center space-x-2">
-            {/* Search Icon */}
-            <button
-              onClick={() => {
-                setSearchOpen(!searchOpen);
-                setMobileMenuOpen(false);
-              }}
-              className="p-2 text-foreground hover:text-primary transition-colors"
-              aria-label="Toggle search"
-            >
-              {searchOpen ? <X size={22} /> : <Search size={22} />}
-            </button>
-
-            {/* Hamburger Menu */}
+          {/* Left: Hamburger Menu */}
+          <div className="flex items-center">
             <button
               onClick={() => {
                 setMobileMenuOpen(!mobileMenuOpen);
@@ -101,6 +62,30 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Center: Circular Logo */}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <img 
+              src={bhLogo} 
+              alt="BH Car Imports Logo" 
+              className="h-12 md:h-14 w-12 md:w-14 rounded-full object-cover cursor-pointer transition-transform hover:scale-105 border-2 border-primary shadow-md" 
+              onClick={() => scrollToSection("home")}
+            />
+          </div>
+
+          {/* Right: Search Icon */}
+          <div className="flex items-center">
+            <button
+              onClick={() => {
+                setSearchOpen(!searchOpen);
+                setMobileMenuOpen(false);
+              }}
+              className="p-2 text-foreground hover:text-primary transition-colors"
+              aria-label="Toggle search"
+            >
+              {searchOpen ? <X size={22} /> : <Search size={22} />}
             </button>
           </div>
         </div>
@@ -138,7 +123,7 @@ const Header = () => {
           </div>
         )}
 
-        {/* Mobile/Desktop Menu Dropdown */}
+        {/* Menu Dropdown */}
         {mobileMenuOpen && (
           <div className="absolute left-0 right-0 bg-background border-b border-border shadow-lg animate-fade-in">
             <nav className="container mx-auto px-4 py-6">
@@ -162,10 +147,10 @@ const Header = () => {
                     Get a Quote
                   </button>
                   <a
-                    href="tel:+265991485544"
+                    href="tel:+265995193635"
                     className="px-6 py-3 border border-border rounded-lg font-semibold hover:bg-secondary transition-colors text-center"
                   >
-                    Call: +265 991 485 544
+                    Call: +265 99 519 3635
                   </a>
                 </div>
               </div>

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
+import Marquee from "@/components/Marquee";
 import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
 import FeaturedVehicles from "@/components/FeaturedVehicles";
 import Inventory from "@/components/Inventory";
 import Services from "@/components/Services";
@@ -24,8 +26,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <Marquee />
       <main className="overflow-hidden">
         <Hero />
+        <HowItWorks />
         <FeaturedVehicles />
         <Inventory />
         <Services />
