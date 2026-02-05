@@ -90,15 +90,17 @@ const Hero = () => {
             <span className="block text-primary mt-2">Delivered to Malawi</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto font-medium">
-            Quality vehicles, transparent pricing, and exceptional service. 
-            Your trusted partner for premium Japanese car imports.
+          <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto font-medium">
+            Quality vehicles, transparent pricing, and exceptional service.
+          </p>
+          <p className="text-base md:text-lg text-foreground/80 mb-8 max-w-2xl mx-auto font-semibold">
+            Safe, duty-free assistance, and door-to-door delivery in Lilongwe, Blantyre, and Mzuzu.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all"
+              className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all w-auto"
               onClick={() => scrollToSection("vehicles")}
             >
               See Vehicles
@@ -107,7 +109,7 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-foreground/20 hover:bg-secondary text-foreground text-lg px-8 py-6 font-semibold"
+              className="border-foreground/20 hover:bg-secondary text-foreground text-lg px-8 py-6 font-semibold w-auto"
               onClick={() => scrollToSection("contact")}
             >
               Contact Us
@@ -132,39 +134,49 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
         </div>
 
-        {/* Stats Section with Animated Counters */}
+        {/* Stats Section - Reorganized Layout */}
         <div 
           ref={statsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto"
+          className="mt-16 max-w-4xl mx-auto"
         >
-          <div className="bg-card border border-border rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow animate-fade-in">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-              <Car className="h-6 w-6 text-primary" />
+          {/* Main Stat - Centered on Top */}
+          <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in mb-6 max-w-md mx-auto">
+            <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
+                <Car className="h-6 w-6 text-primary" />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl md:text-5xl font-bold text-primary">{vehiclesCount}+</span>
+                <span className="text-muted-foreground font-medium">Vehicles Imported</span>
+              </div>
             </div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              {vehiclesCount}+
-            </div>
-            <div className="text-muted-foreground font-medium">Vehicles Imported</div>
           </div>
 
-          <div className="bg-card border border-border rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-              <ThumbsUp className="h-6 w-6 text-primary" />
+          {/* Secondary Stats - Side by Side */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
+                  <ThumbsUp className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl md:text-4xl font-bold text-primary">{satisfactionCount}%</span>
+                  <span className="text-muted-foreground font-medium">Satisfaction</span>
+                </div>
+              </div>
             </div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              {satisfactionCount}%
-            </div>
-            <div className="text-muted-foreground font-medium">Customer Satisfaction</div>
-          </div>
 
-          <div className="bg-card border border-border rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-              <Clock className="h-6 w-6 text-primary" />
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
+                  <Clock className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl md:text-4xl font-bold text-primary">{supportCount}/7</span>
+                  <span className="text-muted-foreground font-medium">Support</span>
+                </div>
+              </div>
             </div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
-              {supportCount}/7
-            </div>
-            <div className="text-muted-foreground font-medium">Customer Support</div>
           </div>
         </div>
       </div>

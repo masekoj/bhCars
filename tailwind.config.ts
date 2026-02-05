@@ -135,6 +135,14 @@ export default {
               transform: "scale(1)",
               opacity: "1"
             }
+          },
+          "marquee": {
+            "0%": {
+              transform: "translateX(0)"
+            },
+            "100%": {
+              transform: "translateX(-50%)"
+            }
           }
         },
         animation: {
@@ -146,6 +154,7 @@ export default {
           "float": "float 3s ease-in-out infinite",
           "pulse-ring": "pulse-ring 1.5s ease-out infinite",
           "scale-up": "scale-up 0.3s ease-out forwards",
+          "marquee": "marquee 35s linear infinite",
         },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
