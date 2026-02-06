@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
+import StickyBadge from "@/components/StickyBadge";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import FeaturedVehicles from "@/components/FeaturedVehicles";
@@ -27,15 +28,32 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <Marquee />
+      <StickyBadge />
       <main className="overflow-hidden">
-        <Hero />
-        <HowItWorks />
-        <FeaturedVehicles />
-        <Inventory />
-        <Services />
-        <About />
-        <ContactForm />
-        <Newsletter />
+        <section className="animate-fade-in">
+          <Hero />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <FeaturedVehicles />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.15s" }}>
+          <Inventory />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <HowItWorks />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.25s" }}>
+          <Services />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <About />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.35s" }}>
+          <ContactForm />
+        </section>
+        <section className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <Newsletter />
+        </section>
       </main>
       <Footer />
       

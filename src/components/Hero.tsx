@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Car, Shield, Clock, ThumbsUp } from "lucide-react";
+import { ChevronRight, Car, Clock, ThumbsUp } from "lucide-react";
 import heroImage from "@/assets/hero-lorry.jpeg";
 
 const Hero = () => {
@@ -75,16 +75,11 @@ const Hero = () => {
   const zoomScale = 1 + Math.min(scrollY / 3000, 0.2);
 
   return (
-    <section id="home" className="relative min-h-screen bg-background pt-16 md:pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-background overflow-hidden">
       {/* Hero Content Container */}
       <div className="container mx-auto px-4 py-12 md:py-20">
         {/* Text Content */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
-            <Car className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm text-primary font-semibold">Japan to Malawi Imports</span>
-          </div>
-
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6 leading-tight max-w-4xl mx-auto">
             Import Your Dream Car from Japan
             <span className="block text-primary mt-2">Delivered to Malawi</span>
@@ -140,7 +135,7 @@ const Hero = () => {
           className="mt-16 max-w-4xl mx-auto"
         >
           {/* Main Stat - Centered on Top */}
-          <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in mb-6 max-w-md mx-auto">
+          <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in mb-6 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-4">
               <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
                 <Car className="h-6 w-6 text-primary" />
@@ -154,7 +149,7 @@ const Hero = () => {
 
           {/* Secondary Stats - Side by Side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: "0.1s" }}>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
                   <ThumbsUp className="h-6 w-6 text-primary" />
@@ -166,7 +161,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
                   <Clock className="h-6 w-6 text-primary" />
