@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Car, Clock, ThumbsUp } from "lucide-react";
 import heroImage from "@/assets/hero-lorry.jpeg";
+import heroBg from "@/assets/hero-cars.jpg";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -76,10 +77,19 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen bg-background overflow-hidden">
+      {/* Subtle Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-[0.03]"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      
+      {/* Gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+
       {/* Hero Content Container */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
         {/* Text Content */}
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-8 animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6 leading-tight max-w-4xl mx-auto">
             Import Your Dream Car from Japan
             <span className="block text-primary mt-2">Delivered to Malawi</span>
@@ -88,9 +98,31 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto font-medium">
             Quality vehicles, transparent pricing, and exceptional service.
           </p>
-          <p className="text-base md:text-lg text-foreground/80 mb-8 max-w-2xl mx-auto font-semibold">
+          <p className="text-base md:text-lg text-foreground/80 mb-6 max-w-2xl mx-auto font-semibold">
             Safe, duty-free assistance, and door-to-door delivery in Lilongwe, Blantyre, and Mzuzu.
           </p>
+
+          {/* Glassmorphic Stat Buttons */}
+          <div 
+            ref={statsRef}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            <div className="stat-button animate-glow">
+              <Car className="h-4 w-4 text-primary" />
+              <span className="text-primary font-bold">{vehiclesCount}+</span>
+              <span className="text-muted-foreground">Vehicles</span>
+            </div>
+            <div className="stat-button animate-glow" style={{ animationDelay: "0.3s" }}>
+              <ThumbsUp className="h-4 w-4 text-primary" />
+              <span className="text-primary font-bold">{satisfactionCount}%</span>
+              <span className="text-muted-foreground">Satisfaction</span>
+            </div>
+            <div className="stat-button animate-glow" style={{ animationDelay: "0.6s" }}>
+              <Clock className="h-4 w-4 text-primary" />
+              <span className="text-primary font-bold">{supportCount}/7</span>
+              <span className="text-muted-foreground">Support</span>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
@@ -127,52 +159,6 @@ const Hero = () => {
           
           {/* Subtle overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
-        </div>
-
-        {/* Stats Section - Reorganized Layout */}
-        <div 
-          ref={statsRef}
-          className="mt-16 max-w-4xl mx-auto"
-        >
-          {/* Main Stat - Centered on Top */}
-          <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in mb-6 max-w-md mx-auto">
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
-                <Car className="h-6 w-6 text-primary" />
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl md:text-5xl font-bold text-primary">{vehiclesCount}+</span>
-                <span className="text-muted-foreground font-medium">Vehicles Imported</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Secondary Stats - Side by Side */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
-                  <ThumbsUp className="h-6 w-6 text-primary" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl md:text-4xl font-bold text-primary">{satisfactionCount}%</span>
-                  <span className="text-muted-foreground font-medium">Satisfaction</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-card/50 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-sm hover:shadow-md transition-all animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full flex-shrink-0">
-                  <Clock className="h-6 w-6 text-primary" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl md:text-4xl font-bold text-primary">{supportCount}/7</span>
-                  <span className="text-muted-foreground font-medium">Support</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
